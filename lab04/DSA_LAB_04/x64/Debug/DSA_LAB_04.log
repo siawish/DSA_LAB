@@ -1,0 +1,3 @@
+﻿  Dyanmic Queue.cpp
+C:\Users\HMMS\source\repos\DSA_LAB_04\DSA_LAB_04\Dyanmic Queue.cpp(131,14): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  DSA_LAB_04.vcxproj -> C:\Users\HMMS\source\repos\DSA_LAB_04\x64\Debug\DSA_LAB_04.exe
