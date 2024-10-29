@@ -260,8 +260,6 @@ int main() {
 			cin.ignore();
 			first = 0;
 		}
-		/*system("CLS");*/
-		
 
 		menu();
 		getline(cin, choice);
