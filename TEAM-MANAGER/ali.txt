@@ -1,0 +1,11 @@
+Name: ali
+ODI: 100
+Matches: 20
+T20: 50
+Test: 60
+Name: ali
+ODI: 2
+Matches: 32
+T20: 323
+Test: 23
+-----------------------------
