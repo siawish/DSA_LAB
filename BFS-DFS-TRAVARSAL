@@ -1,0 +1,117 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <set>
+
+using namespace std;
+
+int MAX_VERTICES=100; \\
+
+
+void addEdge(int adj[MAX_VERTICES][MAX_VERTICES], int u, int v, int vertices) {
+    if (u >= vertices || v >= vertices || u < 0 || v < 0) {
+        cout << "Invalid edge (" << u << ", " << v << ")" << endl;
+        return;
+    }
+    adj[u][v] = 1;
+    adj[v][u] = 1; 
+}
+
+
+void BFS(int adj[MAX_VERTICES][MAX_VERTICES], int vertices, int start) {
+    if (start >= vertices || start < 0) {
+        cout << "Error: Invalid start vertex" << endl;
+        return;
+    }
+
+    bool visited[MAX_VERTICES] = { false };
+    queue<int> q;
+
+    q.push(start);
+    visited[start] = true;
+
+    cout << "BFS Travarsal : ";
+    while (!q.empty()) {
+        int node = q.front();
+        q.pop();
+        cout << node << " ";
+
+        for (int i = 0; i < vertices; ++i) {
+            if (adj[node][i] == 1 && !visited[i]) {
+                visited[i] = true;
+                q.push(i);
+            }
+        }
+    }
+    cout << endl;
+}
+
+
+void DFS(int adj[MAX_VERTICES][MAX_VERTICES], int vertices, int start) {
+    if (start >= vertices || start < 0) {
+        cout << "Error: Invalid start vertex" << endl;
+        return;
+    }
+
+    bool visited[MAX_VERTICES] = { false             };
+    stack<int> s;
+
+    s.push(start);
+
+    cout << "DFS Travarsal : ";
+    while (!s.empty()) {
+        int node = s.top();
+        s.pop();
+
+        if (!visited[node]) {
+            visited[node] = true;
+            cout << node << " ";
+
+            for (int i = vertices - 1; i >= 0; --i) {
+                if (adj[node][i] == 1 && !visited[i]) {
+                    s.push(i);
+                }
+            }
+        }
+    }
+    cout << endl;
+}
+
+int main() {
+    int vertices, edges;
+
+    cout << "Enter number of vertices: ";
+    cin >> vertices;
+    if (vertices <= 0 || vertices > MAX_VERTICES) {
+        cout << "Number of vertices must be positive and less than " << MAX_VERTICES << "." << endl;
+        return 1;
+    }
+
+    cout << "Enter number of edges: ";
+    cin >> edges;
+    if (edges < 0) {
+        cout << "Number edges cannot be negative." << endl;
+        return 1;
+    }
+
+    int adj[MAX_VERTICES] [MAX_VERTICES] = { 0 };
+
+    cout << "Enter edges (u v):" << endl;
+    for (int i = 0; i < edges; ++i) {
+        int u, v;
+        cin >> u >> v;
+        addEdge(adj, u, v, vertices);
+    }
+
+    int start;
+    cout << "Enter starting vertex for traversal: ";
+    cin >> start;
+
+    cout << endl;
+
+    BFS(adj, vertices, start);
+
+    DFS(adj, vertices, start);
+
+    return 0;
+}
